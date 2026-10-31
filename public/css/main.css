@@ -1,30 +1,234 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&family=Titillium+Web:wght@400;600;700&display=swap");
+
+/* ---------- Theme colors ---------- */
+:root {
+    --lime: #b8f500;
+    --lime-dark: #8fc400;
+    --black: #0b0b0b;
+    --charcoal: #1c1c1c;
+    --white: #ffffff;
+    --graphite: #2a2f2b;
+    --radius: 12px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Titillium Web", "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--white);
+    background-color: var(--graphite);
+    background-image:
+        radial-gradient(circle at 30% 30%, rgba(184, 245, 0, 0.12) 0 14px, transparent 15px),
+        radial-gradient(circle at 70% 65%, rgba(184, 245, 0, 0.08) 0 9px, transparent 10px);
+    background-size: 140px 140px, 90px 90px;
+    background-attachment: fixed;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+/* ---------- Images (always on white so they are visible) ---------- */
+img {
+    max-width: 100%;
+    height: auto;
+    background-color: var(--white);
+    padding: 0.75rem;
+    border-radius: var(--radius);
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+/* ---------- Header and navigation ---------- */
+header {
+    background-color: var(--lime);
+    border-bottom: 6px solid var(--black);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+header h1,
+header .site-title {
+    margin: 0 0 0.5rem;
+    color: var(--black);
+    font-family: "Russo One", "Titillium Web", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+nav a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    color: var(--black);
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover {
+    background-color: var(--black);
+    color: var(--lime);
+}
+
+/* ---------- Main content ---------- */
+main {
+    flex: 1;
+    width: min(100% - 2rem, 900px);
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--black);
+    border: 4px solid var(--lime);
+    border-radius: var(--radius);
+    box-shadow: 8px 8px 0 var(--black);
+}
+
+main h1 {
+    margin-top: 0;
+    color: var(--lime);
+    font-family: "Russo One", "Titillium Web", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+main h2 {
+    color: var(--white);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    border-left: 6px solid var(--lime);
+    padding-left: 0.75rem;
+}
+
+main p {
+    max-width: 65ch;
+    font-size: 1.1rem;
+}
+
+main ul {
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+}
+
+main li {
+    background-color: var(--charcoal);
+    border-left: 6px solid var(--lime);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+}
+
+.main-logo {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 1rem;
+}
+
+/* ---------- Partner organization cards ---------- */
+.org-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.org-card img {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.org-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.org-info strong {
+    font-size: 1.15rem;
+    color: var(--white);
+}
+
+.org-info a {
+    color: var(--lime);
+    overflow-wrap: anywhere;
+}
+
+.org-info a:hover {
+    color: var(--white);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    border-top: 6px solid var(--lime);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ---------- Accessibility ---------- */
+a:focus-visible {
+    outline: 3px solid var(--lime);
+    outline-offset: 3px;
+}
+
+nav a:focus-visible {
+    outline-color: var(--black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
     }
-} 
+}
+
+/* ---------- Responsive: tablets and larger ---------- */
+@media (min-width: 700px) {
+    main ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---------- Responsive: small phones ---------- */
+@media (max-width: 480px) {
+    main {
+        padding: 1.25rem;
+        box-shadow: 4px 4px 0 var(--black);
+    }
+
+    .org-card img {
+        width: 72px;
+        height: 72px;
+    }
+}
