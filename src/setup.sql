@@ -60,3 +60,35 @@ INSERT INTO serviceProject (organization_id, title, description, pr_location, pr
 (3, 'Family Literacy Night', 'Host a evening of story time and book giveaways for families.', 'Community Learning Center', '2026-12-09'),
 (3, 'Computer Skills Workshop', 'Teach basic computer and internet skills to adults and seniors.', 'Eastside Library Computer Lab', '2026-12-16'),
 (3, 'Book Donation Drive', 'Collect gently used books to stock classroom libraries.', 'Bright Minds Office', '2027-01-13');
+
+-- Categories table
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Junction table linking projects and categories (many-to-many)
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    FOREIGN KEY (project_id) REFERENCES serviceProject(project_id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE CASCADE
+);
+
+-- Categories
+INSERT INTO category (name)
+VALUES
+    ('Environmental'),
+    ('Education'),
+    ('Community Building'),
+    ('Food & Hunger');
+
+-- Associate projects with categories
+INSERT INTO project_category (project_id, category_id)
+VALUES
+    (1, 1),
+    (1, 3),
+    (2, 2),
+    (3, 4),
+    (3, 3);
