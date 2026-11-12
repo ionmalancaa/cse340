@@ -67,6 +67,7 @@ header .site-title {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    text-decoration: none;
 }
 
 nav ul {
